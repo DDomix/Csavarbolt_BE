@@ -1,5 +1,4 @@
-import { Body, Controller, Get, Post, Render } from '@nestjs/common';
-import { error } from 'console';
+import { Body, Controller, Get, Post, Render, Delete, Param } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { AppService } from './app.service';
 import { Csavar } from './csavar.entity';
@@ -19,15 +18,20 @@ export class AppController {
 
   @Get('api/csavar')
   async listCsavar(){
-    const findrepo=this.dataSource.getRepository(Csavar)
-    return await findrepo.find();
+    const repo=this.dataSource.getRepository(Csavar)
+    return await repo.find();
   }
 
   @Post('api/csavar')
   postCsavar(@Body() csavar: Csavar) {
     csavar.id = undefined;
-    const boltRepo = this.dataSource.getRepository(Csavar);
-    boltRepo.save(csavar);
-    
+    const Repo = this.dataSource.getRepository(Csavar);
+    Repo.save(csavar);
+  }
+  
+  @Delete('api/csavar/:id')
+  deleteCsavar(@Param('id') id: number) {
+    const Repo = this.dataSource.getRepository(Csavar);
+    Repo.delete(id);
   }
 }
