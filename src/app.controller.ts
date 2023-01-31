@@ -34,4 +34,11 @@ export class AppController {
     const Repo = this.dataSource.getRepository(Csavar);
     Repo.delete(id);
   }
+  
+  /* @Post('api/csavar/:id/rendeles')
+  rendelescsavar(@Param('id') id: number){
+    const Repo = this.dataSource.getRepository(Csavar);
+    Repo.find(id);
+    this.postCsavar;
+  }*/
 }
