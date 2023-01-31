@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Rendeles } from "./rendeles.entity";
 
 @Entity()
 export class Csavar {
